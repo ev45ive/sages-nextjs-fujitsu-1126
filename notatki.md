@@ -72,3 +72,44 @@ npm run dev
 - Partial Prefetching enabled
 
 
+
+# Design Tokens
+
+https://m3.material.io/foundations/design-tokens/overview
+https://v21.primeng.org/theming/styled#architecture
+
+
+# Flex
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+http://www.flexboxdefense.com/
+https://flexboxfroggy.com/
+
+
+# CSS GRID
+https://css-tricks.com/complete-guide-css-grid-layout/
+https://cssgridgarden.com/
+
+
+# Gestalt - CSS has meaning
+https://ixdf.org/literature/topics/gestalt-principles
+
+# CSS Specifity
+https://css-tricks.com/specifics-on-css-specificity/ 
+
+# CSS Selectors
+https://flukeout.github.io/
+
+
+# CSS 2022 Selectors
+https://css-tricks.com/what-css-do-you-absolutely-have-to-know-in-2022/
+
+https://caniuse.com/?search=container
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Containment/Container_queries
+
+https://web-platform-dx.github.io/baseline/
+
+https://tailwindcss.com/docs/responsive-design#container-queries
+
+https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state
