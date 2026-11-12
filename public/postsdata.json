@@ -1,0 +1,148 @@
+[
+    {
+        "id": 1,
+        "title": "How to Learn JavaScript",
+        "slug": "how-to-learn-javascript",
+        "author": {
+            "name": "John Doe",
+            "avatar": "http://unsplash.it/50/300?random"
+        },
+        "body": "This is the body of the first blog post.",
+        "images": [
+            "http://unsplash.it/600/300?random",
+            "http://unsplash.it/600/300?random"
+        ],
+        "comments": [
+            {
+                "user": "User1",
+                "comment": "Great post!"
+            },
+            {
+                "user": "User2",
+                "comment": "Thanks for sharing."
+            }
+        ],
+        "tags": [
+            "example",
+            "javascript",
+            "learning"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Understanding React Hooks",
+        "slug": "understanding-react-hooks",
+        "author": {
+            "name": "John Doe",
+            "avatar": "http://unsplash.it/50/300?random"
+        },
+        "body": "This is the body of the second blog post.",
+        "images": [
+            "https://picsum.photos/seed/1/600/300?random",
+            "http://unsplash.it/600/300?random"
+        ],
+        "comments": [
+            {
+                "user": "User3",
+                "comment": "Very informative."
+            },
+            {
+                "user": "User4",
+                "comment": "I learned a lot."
+            }
+        ],
+        "tags": [
+            "example",
+            "react",
+            "hooks"
+        ]
+    },
+    {
+        "id": 3,
+        "title": "CSS Grid vs Flexbox",
+        "slug": "css-grid-vs-flexbox",
+        "author": {
+            "name": "John Doe",
+            "avatar": "http://unsplash.it/50/300?random"
+        },
+        "body": "This is the body of the third blog post.",
+        "images": [
+            "https://picsum.photos/seed/3/600/300?random",
+            "http://unsplash.it/600/300?random"
+        ],
+        "comments": [
+            {
+                "user": "User5",
+                "comment": "Well written."
+            },
+            {
+                "user": "User6",
+                "comment": "I enjoyed reading this."
+            }
+        ],
+        "tags": [
+            "example",
+            "css",
+            "grid",
+            "flexbox"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Top 10 VS Code Extensions",
+        "slug": "top-10-vs-code-extensions",
+        "author": {
+            "name": "John Doe",
+            "avatar": "http://unsplash.it/50/300?random"
+        },
+        "body": "This is the body of the fourth blog post.",
+        "images": [
+            "https://picsum.photos/seed/4/600/300?random",
+            "http://unsplash.it/600/300?random"
+        ],
+        "comments": [
+            {
+                "user": "User7",
+                "comment": "Interesting perspective."
+            },
+            {
+                "user": "User8",
+                "comment": "Thanks for the insights."
+            }
+        ],
+        "tags": [
+            "example",
+            "vscode",
+            "extensions"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "A Guide to Node.js Performance",
+        "slug": "guide-to-nodejs-performance",
+        "author": {
+            "name": "John Doe",
+            "avatar": "http://unsplash.it/50/50?random"
+        },
+        "body": "This is the body of the fifth blog post.",
+        "images": [
+            "http://unsplash.it/600/300?random",
+            "http://unsplash.it/600/300?random"
+        ],
+        "comments": [
+            {
+                "user": "User9",
+                "comment": "Very helpful."
+            },
+            {
+                "user": "User10",
+                "comment": "I appreciate this post."
+            }
+        ],
+        "tags": [
+            "example",
+            "nodejs",
+            "performance"
+        ]
+    }
+]
