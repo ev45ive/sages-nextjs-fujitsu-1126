@@ -1,3 +1,12 @@
+import { TopNavigation } from "@/app/components/TopNavigation";
+
 export default async function name() {
-  return <h1>Page Cart</h1>;
+  return (
+    <div>
+      <TopNavigation />
+      <h1>Page Cart</h1>
+    </div>
+  );
 }
+
+

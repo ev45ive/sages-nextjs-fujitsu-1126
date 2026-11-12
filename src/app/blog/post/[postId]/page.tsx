@@ -1,3 +1,5 @@
+import { TopNavigation } from "../../../components/TopNavigation";
+
 // Allow blocking route (TODO: Suspense)
 export const instant = false;
 
@@ -8,5 +10,10 @@ export default async function BlogPostPage(
 ) {
   const { postId } = await props.params;
 
-  return <div>Blog post: {postId}</div>;
+  return (
+    <div>
+      <TopNavigation />
+      Blog post: {postId}
+    </div>
+  );
 }

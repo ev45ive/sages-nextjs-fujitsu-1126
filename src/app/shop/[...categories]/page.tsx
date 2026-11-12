@@ -1,5 +1,7 @@
 ///  Catch all segment must be the last segment
 
+import { TopNavigation } from "@/app/components/TopNavigation";
+
 export default async function ShopCategory({
   params,
 }: PageProps<"/shop/[...categories]">) {
@@ -7,6 +9,7 @@ export default async function ShopCategory({
 
   return (
     <div>
+      <TopNavigation />
       <h1 className="text-2xl">ShopCategory</h1>
 
       <ul>

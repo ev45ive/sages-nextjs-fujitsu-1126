@@ -1,3 +1,5 @@
+import { TopNavigation } from "../components/TopNavigation";
+
 // Allow blocking route (TODO: Suspense)
 export const instant = false;
 
@@ -16,6 +18,8 @@ export default async function BlogPage({
 
   return (
     <div className="container mx-auto grid gap-5 my-5">
+      <TopNavigation />
+
       <h1 className="text-2xl">BlogPage</h1>
 
       <div className="flex justify-between gap-5 sm:px-5">

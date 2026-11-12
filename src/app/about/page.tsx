@@ -1,12 +1,17 @@
 // tsrfc
 
 import React from "react";
+import { TopNavigation } from "../components/TopNavigation";
 
 type Props = {};
 
-
-// http://localhost:3000/blog/
+// http://localhost:3000/about/
 
 export default function BlogPage({}: Props) {
-  return <div>BlogPage</div>;
+  return (
+    <div>
+      <TopNavigation />
+      aboutPage
+    </div>
+  );
 }
