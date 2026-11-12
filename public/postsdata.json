@@ -5,12 +5,12 @@
         "slug": "how-to-learn-javascript",
         "author": {
             "name": "John Doe",
-            "avatar": "http://unsplash.it/50/300?random"
+            "avatar": "https://placehold.co/50x50?text=A1"
         },
         "body": "This is the body of the first blog post.",
         "images": [
-            "http://unsplash.it/600/300?random",
-            "http://unsplash.it/600/300?random"
+            "https://placehold.co/600x300?text=1a",
+            "https://placehold.co/600x300?text=1b"
         ],
         "comments": [
             {
@@ -34,12 +34,12 @@
         "slug": "understanding-react-hooks",
         "author": {
             "name": "John Doe",
-            "avatar": "http://unsplash.it/50/300?random"
+            "avatar": "https://placehold.co/50x50?text=A2"
         },
         "body": "This is the body of the second blog post.",
         "images": [
-            "https://picsum.photos/seed/1/600/300?random",
-            "http://unsplash.it/600/300?random"
+            "https://placehold.co/600x300?text=2a",
+            "https://placehold.co/600x300?text=2b"
         ],
         "comments": [
             {
@@ -63,12 +63,12 @@
         "slug": "css-grid-vs-flexbox",
         "author": {
             "name": "John Doe",
-            "avatar": "http://unsplash.it/50/300?random"
+            "avatar": "https://placehold.co/50x50?text=A3"
         },
         "body": "This is the body of the third blog post.",
         "images": [
-            "https://picsum.photos/seed/3/600/300?random",
-            "http://unsplash.it/600/300?random"
+            "https://placehold.co/600x300?text=3a",
+            "https://placehold.co/600x300?text=3b"
         ],
         "comments": [
             {
@@ -93,12 +93,12 @@
         "slug": "top-10-vs-code-extensions",
         "author": {
             "name": "John Doe",
-            "avatar": "http://unsplash.it/50/300?random"
+            "avatar": "https://placehold.co/50x50?text=A4"
         },
         "body": "This is the body of the fourth blog post.",
         "images": [
-            "https://picsum.photos/seed/4/600/300?random",
-            "http://unsplash.it/600/300?random"
+            "https://placehold.co/600x300?text=4a",
+            "https://placehold.co/600x300?text=4b"
         ],
         "comments": [
             {
@@ -122,12 +122,12 @@
         "slug": "guide-to-nodejs-performance",
         "author": {
             "name": "John Doe",
-            "avatar": "http://unsplash.it/50/50?random"
+            "avatar": "https://placehold.co/50x50?text=A5"
         },
         "body": "This is the body of the fifth blog post.",
         "images": [
-            "http://unsplash.it/600/300?random",
-            "http://unsplash.it/600/300?random"
+            "https://placehold.co/600x300?text=5a",
+            "https://placehold.co/600x300?text=5b"
         ],
         "comments": [
             {

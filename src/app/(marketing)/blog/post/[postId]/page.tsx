@@ -2,6 +2,7 @@
 // export const instant = false;
 
 import { delay } from "@/app/utils/delay";
+import { getBlogPostById } from "@/services/BlogAPI";
 import { notFound } from "next/navigation";
 
 // http://localhost:3000/blog/post/123/
@@ -11,16 +12,24 @@ export default async function BlogPostPage(
 ) {
   const { postId } = await props.params;
 
-  await delay(4000);
+  const post = await getBlogPostById(postId);
 
-  if (parseInt(postId) == 500) {
-    throw new Error("Ten post się pospsuł...");
-  }
-
-  if (parseInt(postId) > 400) {
+  if (!post) {
     notFound();
-    // const x = 123 // Unreachable code detected.ts(7027)
   }
 
-  return <div>Blog post: {postId}</div>;
+  return (
+    <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+      <article className="space-y-6">
+        <header className="space-y-2">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            {post.title}
+          </h1>
+        </header>
+        <div className="prose prose-gray max-w-none whitespace-pre-line text-gray-700">
+          {post.body}
+        </div>
+      </article>
+    </main>
+  );
 }
