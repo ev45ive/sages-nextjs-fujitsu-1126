@@ -4,6 +4,8 @@ export function TopNavigation() {
       <a href="/blog">Blog</a>
       <a href="/about">About</a>
       <a href="/shop/categories/nowosci">Shop</a>
+
+      <input type="search" className="border" />
     </div>
   );
 }

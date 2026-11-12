@@ -1,6 +1,6 @@
 
 // Allow blocking route (TODO: Suspense)
-export const instant = false;
+// export const instant = false;
 
 type QueryParams = {
   searchParams: Promise<{
