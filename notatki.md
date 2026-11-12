@@ -127,3 +127,7 @@ https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-paren
   },
   "tailwindCSS.emmetCompletions": true,
 ```
+
+# React Devtools
+https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
+
