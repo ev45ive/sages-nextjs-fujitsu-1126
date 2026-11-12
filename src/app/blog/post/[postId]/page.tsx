@@ -10,10 +10,5 @@ export default async function BlogPostPage(
 ) {
   const { postId } = await props.params;
 
-  return (
-    <div>
-      <TopNavigation />
-      Blog post: {postId}
-    </div>
-  );
+  return <div>Blog post: {postId}</div>;
 }
