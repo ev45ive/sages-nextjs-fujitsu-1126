@@ -1,6 +1,7 @@
-
 // Allow blocking route (TODO: Suspense)
 // export const instant = false;
+
+import { delay } from "@/app/utils/delay";
 
 type QueryParams = {
   searchParams: Promise<{
@@ -14,6 +15,8 @@ export default async function BlogPage({
   searchParams,
 }: PageProps<"/blog"> & QueryParams) {
   const { filter, page } = await searchParams; //
+
+  await delay(2000);
 
   return (
     <>
