@@ -8,25 +8,20 @@ type QueryParams = {
   }>;
 };
 
-
-// http://localhost:3000/blog/?filter=banana&page=12
-
-// export default async function BlogPage(
-//   params: PageProps<"/blog"> & QueryParams,
-// ) {
-//   params.params;
-//   params.searchParams;
-//   const { params, searchParams } = params; // Destructuring
-// }
-
-export default async function BlogPage({searchParams, params}: PageProps<"/blog"> & QueryParams) {
+// http://localhost:3000/blog
+export default async function BlogPage({
+  searchParams,
+}: PageProps<"/blog"> & QueryParams) {
   const { filter, page } = await searchParams; //
 
   return (
-    <div>
+    <div className="container mx-auto grid gap-5 my-5">
       <h1 className="text-2xl">BlogPage</h1>
-      <p>Filter: {filter ?? "No filter"}</p>
-      <p>Page: {page ?? 1}</p>
+
+      <div className="flex justify-between gap-5 sm:px-5">
+        <p>Filter: {filter ?? "No filter"}</p>
+        <p>Page: {page ?? 1}</p>
+      </div>
     </div>
   );
 }
