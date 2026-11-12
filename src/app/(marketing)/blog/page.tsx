@@ -1,4 +1,3 @@
-import { TopNavigation } from "../components/TopNavigation";
 
 // Allow blocking route (TODO: Suspense)
 export const instant = false;
