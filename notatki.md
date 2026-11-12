@@ -113,3 +113,17 @@ https://web-platform-dx.github.io/baseline/
 https://tailwindcss.com/docs/responsive-design#container-queries
 
 https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state
+
+# Tailwind + Emmet 
+```
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "vue": "vue",
+    "javascript": "javascript",
+    "typescript": "typescript",
+    "css": "css",
+    "scss": "scss",
+    "reacttypescript": "reacttypescript"
+  },
+  "tailwindCSS.emmetCompletions": true,
+```
