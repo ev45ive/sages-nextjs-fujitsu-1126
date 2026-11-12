@@ -1,4 +1,5 @@
-
+// Allow blocking route (TODO: Suspense)
+export const instant = false;
 
 // http://localhost:3000/blog/post/123/
 
