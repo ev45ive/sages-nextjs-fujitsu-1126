@@ -1,9 +1,11 @@
+import Link from "next/link";
+
 export function TopNavigation() {
   return (
     <div className="flex gap-5">
-      <a href="/blog">Blog</a>
-      <a href="/about">About</a>
-      <a href="/shop/categories/nowosci">Shop</a>
+      <Link href="/blog">Blog</Link>
+      <Link href="/about">About</Link>
+      <Link href="/catalog/nowosci">Shop</Link>
 
       <input type="search" className="border" />
     </div>
