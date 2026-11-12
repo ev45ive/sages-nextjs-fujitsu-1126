@@ -1,10 +1,11 @@
 ///  Catch all segment must be the last segment
 
-import { MainLayout } from "../../components/MainLayout";
+import { MainLayout } from "@/app/components/MainLayout";
+
 
 export default async function ShopCategory({
   params,
-}: PageProps<"/shop/[...categories]">) {
+}: PageProps<"/catalog/[...categories]">) {
   const { categories } = await params;
 
   return (
