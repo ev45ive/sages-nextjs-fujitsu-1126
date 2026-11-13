@@ -2,6 +2,7 @@ import { delay } from "@/app/utils/delay";
 import { notFound } from "next/navigation";
 
 import posts from "../../public/postsdata.json";
+import { cacheLife, cacheTag } from "next/cache";
 
 export async function getBlogPosts({
   filter = "",
@@ -9,6 +10,9 @@ export async function getBlogPosts({
   filter?: string;
 } = {}): Promise<BlogPost[]> {
   "use cache";
+  cacheLife("hours");
+  cacheTag("blog-posts");
+
   await delay(300, 500);
 
   // TODO: DB
@@ -20,6 +24,8 @@ export async function getBlogPosts({
 export async function getBlogPostById(postId: string): Promise<BlogPost> {
   "use cache";
   await delay(1600);
+  cacheLife("hours");
+  cacheTag(`blog-post-${postId}`);
 
   console.log("getBlogPostById: " + postId);
 
@@ -41,6 +47,9 @@ export async function getBlogPostComments(
 ): Promise<BlogPost["comments"]> {
   "use cache";
   const post = await getBlogPostById(postId);
+
+  cacheLife("minutes");
+  cacheTag(`blog-post-${postId}`);
 
   if (!post) notFound(); // 404
 

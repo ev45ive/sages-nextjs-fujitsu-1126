@@ -14,6 +14,8 @@ import { Suspense } from "react";
 export default async function BlogPostPage(
   props: PageProps<`/blog/post/[postId]`>,
 ) {
+  "use cache";
+  
   return (
     <main className="mx-auto max-w-3xl space-y-10 px-4 py-12 sm:px-6">
       <Suspense fallback={<PostLoading />}>

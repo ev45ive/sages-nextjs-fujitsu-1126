@@ -3,6 +3,7 @@ import {
   getBlogPostById,
   getBlogPostComments,
 } from "@/services/BlogAPI";
+import { revalidatePath, revalidateTag, updateTag } from "next/cache";
 import { cookies, headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
@@ -15,7 +16,6 @@ export async function GET(
 ) {
   const { postId } = await ctx.params;
   const filter = new URL(request.url).searchParams.get("q");
-
 
   const comments = await getBlogPostComments(postId);
 
@@ -40,6 +40,12 @@ export async function POST(
 
   // No InMemory User state!
   post.comments.push(body as BlogPostComment);
+
+  updateTag(`blog-post-${postId}`);
+
+  revalidateTag(`blog-post-${postId}`, "hours");
+
+  revalidatePath(`/blog/post/${postId}`); // page cache
 
   //   return NextResponse.redirect('/api/blog/posts/',{})
 
