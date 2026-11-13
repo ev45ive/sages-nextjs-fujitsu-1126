@@ -13,6 +13,10 @@ export default async function ShopCategory({
           })}
         </div>
         <div className="grid gap-5">
+          {/* Nowosci */}
+
+          {/* product */}
+
           {/* .grid.grid-cols-3.gap-5>.border.border-red-200{Product $} */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
             <div className="border border-red-200">Product 1</div>
