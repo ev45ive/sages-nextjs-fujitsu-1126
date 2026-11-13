@@ -54,9 +54,11 @@ export type BlogPost = {
   };
   body: string;
   images: string[];
-  comments: {
-    user: string;
-    comment: string;
-  }[];
+  comments: BlogPostComment[];
   tags: string[];
+};
+
+export type BlogPostComment = {
+  user: string;
+  comment: string;
 };

@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState, type ComponentProps } from "react";
+import { type ComponentProps } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { BlogPost } from "@/services/BlogAPI";
-import { fetchGET } from "@/api";
+import { useBlogPostCommentsQuery } from "@/hooks";
 
 type BlogPostCommentsProps = ComponentProps<"section"> & {
   comments?: BlogPost["comments"];
@@ -17,46 +17,30 @@ export function BlogPostComments({
   className,
   ...props
 }: BlogPostCommentsProps) {
-  const [comments, setComments] = useState(initialComments);
+  //...
+  //   const query2 = useBlogPostCommentsQuery(123, initialComments)
 
-  const onResetClick = () => setComments([]);
+  const {
+    data: comments,
+    isLoading,
+    error,
+  } = useBlogPostCommentsQuery(postId, initialComments);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
-
-  // Formula =SUM(A1,B2)
-  useEffect(() => {
-    console.log("effect");
-
-    const huston = new AbortController();
-
-    const handler = setTimeout(() => {
-      setIsLoading(true);
-
-      fetchGET<BlogPost["comments"]>(`/api/blog/posts/${postId}/comments`, {
-        signal: huston.signal,
-      })
-        .then((e) => setComments(e))
-        .catch((e) => setError(e))
-        .finally(() => setIsLoading(false));
-    }, 0 /* ASAP */);
-
-    return () => {
-      clearTimeout(handler);
-      huston.abort("CANCELLED");
-    };
-  }, [postId]);
-
-  console.log("render");
-
-  /* vdiv : {type:'div', props: { className:'' } */
   return (
     <section className={className} {...props}>
       <Card>
-        <CardHeader onClick={() => onResetClick()}>
+        <CardHeader>
           <CardTitle>Comments ({comments.length})</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
+          {isLoading && (
+            <p className="text-sm text-muted-foreground">
+              Loading commments...
+            </p>
+          )}
+          {error && (
+            <p className="text-sm text-danger">Error loading comments</p>
+          )}
           {comments.length === 0 && (
             <p className="text-sm text-muted-foreground">No comments yet.</p>
           )}
