@@ -12,9 +12,9 @@ const baseUrl = `http://localhost:3000`;
 
 /// ----
 
-export async function fetchGET<T>(url: string): Promise<T> {
+export async function fetchGET<T>(url: string, init?: RequestInit): Promise<T> {
   try {
-    const res = await fetch(`${baseUrl}${url}`, {});
+    const res = await fetch(`${baseUrl}${url}`, { ...init });
     if (!res.ok) {
       const error = await res.json();
       throw new Error(error.message ?? "Unknown Error");
@@ -33,11 +33,14 @@ export async function fetchGET<T>(url: string): Promise<T> {
 export async function fetchPOST<TResBody, TBody = object>(
   url: string,
   body: TBody,
+  init?: RequestInit,
 ): Promise<TResBody> {
   try {
     const res = await fetch(`${baseUrl}${url}`, {
+      ...init,
       method: "POST",
       headers: {
+        ...init?.headers,
         ...authHeaders,
       },
       // credentials: 'include', // Cross-origin Cookies!?
