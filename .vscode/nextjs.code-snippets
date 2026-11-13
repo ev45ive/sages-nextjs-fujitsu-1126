@@ -11,7 +11,7 @@
       "  ${4:const { ${5:slug} \\} = await props.params;}",
       "  ${6:const { ${7:query} \\} = await props.searchParams;}",
       "",
-      "  // TODO: nextNotFoundCheck",
+      "  ${8:// nextNotFoundCheck}",
       "",
       "  return (",
       "    <div>$0</div>",
