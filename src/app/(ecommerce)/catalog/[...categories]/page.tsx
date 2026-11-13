@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { Suspense } from "react";
+
+export const instant = false
 
 export default async function CatalogPage({
   params,
@@ -14,16 +17,18 @@ export default async function CatalogPage({
       {/* catalog/[...] */}
 
       <div className="flex gap-5">
-        {categories.map((category, index) => {
-          return (
-            <Link
-              key={category}
-              href={`/catalog/${categories.slice(0, index + 1).join("/")}`}
-            >
-              &raquo; {category}
-            </Link>
-          );
-        })}
+        <Suspense>
+          {categories.map((category, index) => {
+            return (
+              <Link
+                key={category}
+                href={`/catalog/${categories.slice(0, index + 1).join("/")}`}
+              >
+                &raquo; {category}
+              </Link>
+            );
+          })}
+        </Suspense>
       </div>
 
       {/* .grid.grid-cols-3.gap-5>.border.border-red-200{Product $} */}
