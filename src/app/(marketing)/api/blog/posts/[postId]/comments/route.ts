@@ -1,5 +1,6 @@
-import { getBlogPostComments } from "@/services/BlogAPI";
+import { getBlogPostById, getBlogPostComments } from "@/services/BlogAPI";
 import { cookies, headers } from "next/headers";
+import { notFound } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
 // http://localhost:3000/api/blog/posts/123/comments
@@ -10,6 +11,10 @@ export async function GET(
 ) {
   const { postId } = await ctx.params;
   const filter = new URL(request.url).searchParams.get("q");
+
+  const post = await getBlogPostById(postId);
+
+  if (!post) notFound(); // 404
 
   const comments = await getBlogPostComments(postId);
 

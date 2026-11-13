@@ -8,7 +8,7 @@ export function useBlogPostCommentsQuery(
 ) {
   return useFetchQuery<BlogPostComment[]>(
     [postId],
-    ({ signal }) => fetchGET("/api/blog/posts/${postId}/comments", { signal }),
+    ({ signal }) => fetchGET(`/api/blog/posts/${postId}/comments`, { signal }),
     initial,
   );
 }
@@ -22,7 +22,7 @@ export function useBlogPostsQuery(postId = "", initial: BlogPost[] = []) {
 }
 
 export function useFetchQuery<T>(
-  key: unknown[],
+  queryKey: unknown[],
   fetcher: (init: { signal: AbortSignal }) => Promise<T>,
   initial?: T,
 ) {
@@ -48,7 +48,7 @@ export function useFetchQuery<T>(
       clearTimeout(handler);
       huston.abort("CANCELLED");
     };
-  }, key);
+  }, queryKey);
 
   return {
     data,

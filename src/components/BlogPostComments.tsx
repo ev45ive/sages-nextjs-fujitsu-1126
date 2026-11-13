@@ -33,15 +33,15 @@ export function BlogPostComments({
           <CardTitle>Comments ({comments.length})</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
+          {error && (
+            <p className="text-sm text-danger">Error loading comments</p>
+          )}
           {isLoading && (
             <p className="text-sm text-muted-foreground">
               Loading commments...
             </p>
           )}
-          {error && (
-            <p className="text-sm text-danger">Error loading comments</p>
-          )}
-          {comments.length === 0 && (
+          {!isLoading && !error && comments.length === 0 && (
             <p className="text-sm text-muted-foreground">No comments yet.</p>
           )}
           {comments.map((item, index) => (
