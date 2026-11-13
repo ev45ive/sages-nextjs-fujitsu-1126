@@ -1,4 +1,8 @@
-import { getBlogPostById, getBlogPostComments } from "@/services/BlogAPI";
+import {
+  BlogPostComment,
+  getBlogPostById,
+  getBlogPostComments,
+} from "@/services/BlogAPI";
 import { cookies, headers } from "next/headers";
 import { notFound } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
@@ -27,13 +31,20 @@ export async function POST(
 ) {
   const { postId } = await ctx.params;
 
-  const bearerToken = (await headers()).get("Authorization");
-  const cookieJar = await cookies();
-  const session = cookieJar.get("session");
+  // const bearerToken = (await headers()).get("Authorization");
+  // const cookieJar = await cookies();
+  // const session = cookieJar.get("session");
 
   const body = await request.json();
 
+  const post = await getBlogPostById(postId);
+
+  if (!post) notFound(); // 404
+
+  // No InMemory User state!
+  post.comments.push(body as BlogPostComment);
+
   //   return NextResponse.redirect('/api/blog/posts/',{})
 
-  return NextResponse.json({ postId, session, body }, { status: 201 });
+  return NextResponse.json({ postId }, { status: 201 });
 }

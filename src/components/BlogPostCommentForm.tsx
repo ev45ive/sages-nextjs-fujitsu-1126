@@ -1,16 +1,15 @@
+"use client";
+
 import type { ComponentProps } from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 type BlogPostCommentFormProps = ComponentProps<"form"> & {
   postId: string;
+//   onSubmit: (e:SubmitEvent) => void
 };
 
 export function BlogPostCommentForm({

@@ -30,6 +30,9 @@ export function useFetchQuery<T>(
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error>();
 
+  const [refetchKey, setRefetchKey] = useState(() => Date.now());
+  const refetch = () => setRefetchKey(Date.now());
+
   useEffect(() => {
     const huston = new AbortController();
 
@@ -48,11 +51,12 @@ export function useFetchQuery<T>(
       clearTimeout(handler);
       huston.abort("CANCELLED");
     };
-  }, queryKey);
+  }, [...queryKey, refetchKey]);
 
   return {
     data,
     isLoading,
     error,
+    refetch,
   };
 }
