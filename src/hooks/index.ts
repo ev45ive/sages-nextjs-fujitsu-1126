@@ -1,14 +1,34 @@
 import { fetchGET } from "@/api";
-import { BlogPostComment } from "@/services/BlogAPI";
+import { BlogPost, BlogPostComment } from "@/services/BlogAPI";
 import { useState, useEffect } from "react";
 
 export function useBlogPostCommentsQuery(
   postId = "",
   initial: BlogPostComment[] = [],
 ) {
-  const [comments, setComments] = useState<BlogPostComment[]>(initial);
+  return useFetchQuery<BlogPostComment[]>(
+    [postId],
+    ({ signal }) => fetchGET("/api/blog/posts/${postId}/comments", { signal }),
+    initial,
+  );
+}
+
+export function useBlogPostsQuery(postId = "", initial: BlogPost[] = []) {
+  return useFetchQuery<BlogPost[]>(
+    [postId],
+    ({ signal }) => fetchGET("/api/blog/posts", { signal }),
+    initial,
+  );
+}
+
+export function useFetchQuery<T>(
+  key: unknown[],
+  fetcher: (init: { signal: AbortSignal }) => Promise<T>,
+  initial?: T,
+) {
+  const [data, setData] = useState<T | undefined>(initial);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState<Error>();
 
   useEffect(() => {
     const huston = new AbortController();
@@ -16,10 +36,10 @@ export function useBlogPostCommentsQuery(
     const handler = setTimeout(() => {
       setIsLoading(true);
 
-      fetchGET<BlogPostComment[]>(`/api/blog/posts/${postId}/comments`, {
+      fetcher({
         signal: huston.signal,
       })
-        .then((e) => setComments(e))
+        .then((e) => setData(e))
         .catch((e) => setError(e))
         .finally(() => setIsLoading(false));
     }, 0);
@@ -28,10 +48,10 @@ export function useBlogPostCommentsQuery(
       clearTimeout(handler);
       huston.abort("CANCELLED");
     };
-  }, [postId]);
+  }, key);
 
   return {
-    data: comments,
+    data,
     isLoading,
     error,
   };

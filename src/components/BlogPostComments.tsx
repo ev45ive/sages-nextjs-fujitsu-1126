@@ -21,7 +21,7 @@ export function BlogPostComments({
   //   const query2 = useBlogPostCommentsQuery(123, initialComments)
 
   const {
-    data: comments,
+    data: comments = [],
     isLoading,
     error,
   } = useBlogPostCommentsQuery(postId, initialComments);
