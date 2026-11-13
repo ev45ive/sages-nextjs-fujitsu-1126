@@ -21,6 +21,9 @@ export function BlogPostComments({
 
   const onResetClick = () => setComments([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+
   // Formula =SUM(A1,B2)
   useEffect(() => {
     console.log("effect");
@@ -28,9 +31,14 @@ export function BlogPostComments({
     const huston = new AbortController();
 
     const handler = setTimeout(() => {
+      setIsLoading(true);
+
       fetchGET<BlogPost["comments"]>(`/api/blog/posts/${postId}/comments`, {
         signal: huston.signal,
-      }).then((e) => setComments(e));
+      })
+        .then((e) => setComments(e))
+        .catch((e) => setError(e))
+        .finally(() => setIsLoading(false));
     }, 0 /* ASAP */);
 
     return () => {
