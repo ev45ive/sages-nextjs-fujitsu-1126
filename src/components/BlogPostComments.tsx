@@ -15,20 +15,20 @@ type BlogPostCommentsProps = ComponentProps<"section"> & {
   postId: string;
 };
 
-export function BlogPostComments({
+export function BlogPostCommentsClient({
   postId,
   comments: commentsPromise,
   className,
   ...props
 }: BlogPostCommentsProps) {
-  const comments = use(commentsPromise); // Delay loading
+  const initialcomments = use(commentsPromise); // Delay loading
 
   const {
-    data = [],
+    data: comments = [],
     isLoading,
     error,
     refetch,
-  } = useBlogPostCommentsQuery(postId, comments);
+  } = useBlogPostCommentsQuery(postId, initialcomments);
 
   const createComment = async (data: BlogPostComment) => {
     try {

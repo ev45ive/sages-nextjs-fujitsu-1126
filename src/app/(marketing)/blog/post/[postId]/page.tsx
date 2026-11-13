@@ -1,7 +1,7 @@
 // Allow blocking route (TODO: Suspense)
 // export const instant = false;
 
-import { BlogPostComments } from "@/components/BlogPostComments";
+import { BlogPostCommentsClient } from "@/components/BlogPostComments";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { getBlogPostById, getBlogPostComments } from "@/services/BlogAPI";
@@ -14,16 +14,54 @@ import { Suspense } from "react";
 export default async function BlogPostPage(
   props: PageProps<`/blog/post/[postId]`>,
 ) {
-  const { postId } = await props.params;
+  // const { postId } = await props.params;
 
-  const post = await getBlogPostById(postId); // loading.jsx - 500
-  const postComments = getBlogPostComments(postId); // loading.jsx - 1000
-
-  // const post = await postP; const postComments = await postCommentsP;
-  // const [post, postComments] = await Promise.all([postP, postCommentsP]);
+  // const postComments = getBlogPostComments(postId);
 
   return (
     <main className="mx-auto max-w-3xl space-y-10 px-4 py-12 sm:px-6">
+      <Suspense fallback={<PostLoading />}>
+        <BlogPostContent params={props.params} />
+      </Suspense>
+
+      <Separator />
+
+      <Suspense fallback={<p>Loading comments sections</p>}>
+        <BlogPostCommentsServer params={props.params} />
+      </Suspense>
+    </main>
+  );
+}
+
+// Next pokazuje ten komponent, dopóki getBlogPostById w stronie posta się nie zakończy
+function PostLoading() {
+  return (
+    <div className="mx-auto max-w-3xl animate-pulse space-y-6 py-6">
+      <div className="h-10 w-2/3 rounded bg-gray-200" />
+      <div className="h-4 w-full rounded bg-gray-200" />
+      <div className="h-4 w-5/6 rounded bg-gray-200" />
+    </div>
+  );
+}
+
+async function BlogPostCommentsServer(props: {
+  params: Promise<{ postId: string }>;
+}) {
+  const { postId } = await props.params;
+  const post = getBlogPostById(postId);
+
+  const postComments = getBlogPostComments(postId);
+
+  return <BlogPostCommentsClient postId={postId} comments={postComments} />;
+}
+
+async function BlogPostContent(props: { params: Promise<{ postId: string }> }) {
+  const { postId } = await props.params;
+
+  const post = await getBlogPostById(postId);
+
+  return (
+    <>
       <article className="space-y-6">
         <header className="space-y-4">
           <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
@@ -70,12 +108,6 @@ export default async function BlogPostPage(
           </section>
         )}
       </article>
-
-      <Separator />
-
-      <Suspense fallback={<p>Loading comments sections</p>}>
-        <BlogPostComments postId={postId} comments={postComments} />
-      </Suspense>
-    </main>
+    </>
   );
 }

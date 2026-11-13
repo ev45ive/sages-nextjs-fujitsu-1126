@@ -17,7 +17,7 @@ export async function getBlogPosts({
 }
 
 export async function getBlogPostById(postId: string): Promise<BlogPost> {
-  await delay(600);
+  await delay(1600);
 
   if (parseInt(postId) == 500) {
     throw new Error("Ten post się pospsuł..."); // error.tsx
