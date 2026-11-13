@@ -1,26 +1,16 @@
-import Link from "next/link";
+import { CategoryNav } from "./CategoryNav";
+import { Suspense, type ReactNode } from "react";
 
-export default async function ShopCategory({children}: LayoutProps<"/catalog">) {
+// Wspólny układ katalogu: sidebar z drzewem kategorii obok treści; sidebar w Suspense, bo czyta URL
+export default function CatalogLayout({ children }: { children: ReactNode }) {
   return (
-    <>
-      {/* .grid.grid-cols-2.gap-5>.grid.gap-5*4{Columna $} */}
-      <div className="grid grid-cols-[10rem_1fr] gap-5">
-        <div className="grid gap-5">
-          <Link href={"/catalog/nowosci"}>Nowosci</Link>
-          <Link href={"/catalog/ubrania"}>Ubrania</Link>
-          <Link href={"/catalog/ubrania/damskie"}> - Damskie</Link>
-          <Link href={"/catalog/ubrania/damskie/sukienki"}> -- Sukienki</Link>
-          <Link href={"/catalog/ubrania"}> - Meskie</Link>
-        </div>
-        <div className="grid gap-5">
-          {/* Catalog Products */}
-          {children}
-        </div>
-        <div className="grid gap-5">
-          Panel Lewy
-        </div>
-        <div className="grid gap-5">Stopka prawa</div>
-      </div>
-    </>
+    <div className="grid grid-cols-[14rem_minmax(0,1fr)] gap-8">
+      <aside className="border-r pr-6">
+        <Suspense fallback={<p className="text-sm text-muted-foreground">Ładowanie kategorii…</p>}>
+          <CategoryNav />
+        </Suspense>
+      </aside>
+      <div className="min-w-0">{children}</div>
+    </div>
   );
 }
