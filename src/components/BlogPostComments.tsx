@@ -5,10 +5,13 @@ import { type ComponentProps } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { BlogPost } from "@/services/BlogAPI";
 import { useBlogPostCommentsQuery } from "@/hooks";
+import { BlogPostCommentForm } from "./BlogPostCommentForm";
+import { Separator } from "./ui/separator";
+import { cn } from "cn";
 
 type BlogPostCommentsProps = ComponentProps<"section"> & {
   comments?: BlogPost["comments"];
-  postId?: string;
+  postId: string;
 };
 
 export function BlogPostComments({
@@ -27,7 +30,7 @@ export function BlogPostComments({
   } = useBlogPostCommentsQuery(postId, initialComments);
 
   return (
-    <section className={className} {...props}>
+    <section className={cn(className,'space-y-3')} {...props}>
       <Card>
         <CardHeader>
           <CardTitle>Comments ({comments.length})</CardTitle>
@@ -50,6 +53,13 @@ export function BlogPostComments({
               <p className="text-sm text-muted-foreground">{item.comment}</p>
             </div>
           ))}
+        </CardContent>
+      </Card>
+
+      <Separator />
+      <Card>
+        <CardContent className="space-y-4">
+          <BlogPostCommentForm postId={postId} />
         </CardContent>
       </Card>
     </section>
