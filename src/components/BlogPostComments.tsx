@@ -1,12 +1,8 @@
+"use client";
 
 import type { ComponentProps } from "react";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { BlogPost } from "@/services/BlogAPI";
 
 type BlogPostCommentsProps = ComponentProps<"section"> & {
@@ -30,9 +26,7 @@ export function BlogPostComments({
           )}
           {comments.map((item, index) => (
             <div key={index} className="rounded-lg bg-muted p-4">
-              <p className="text-sm font-medium text-foreground">
-                {item.user}
-              </p>
+              <p className="text-sm font-medium text-foreground">{item.user}</p>
               <p className="text-sm text-muted-foreground">{item.comment}</p>
             </div>
           ))}
