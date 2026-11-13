@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { CartBadge } from "./CartBadge";
 
 const links = [
   { href: "/blog", label: "Blog" },
@@ -35,9 +36,22 @@ export function TopNavigation() {
         })}
       </nav>
 
-      <Input type="search" placeholder="Search" className="ml-auto w-56" />
-      <ModeToggle />
-      <Button>Login</Button>
+      <div className="ml-auto flex items-center gap-2 text-sm">
+        <Input
+          type="search"
+          placeholder="Szukaj"
+          aria-label="Szukaj produktów"
+          className="h-8 w-44"
+        />
+        <ModeToggle />
+        <CartBadge />
+        <Link href="/account/orders" className="rounded-md px-3 py-1.5">
+          Konto
+        </Link>
+        <Link href="/login" className="rounded-md px-3 py-1.5">
+          Zaloguj
+        </Link>
+      </div>
     </header>
   );
 }
