@@ -44,6 +44,12 @@ Nie ładuj ich nigdy automtycznie, chyba że użytkownik sam je wskaże.
 ---
 
 
+## Komponenty, layouty i strony Next.js
+
+Gdy planujesz, tworzysz, aktualizujesz lub walidujesz komponenty, layouty lub strony (`src/app/**`, `src/components/**`), najpierw przeczytaj [nextjs-components.instructions.md](.github/instructions/nextjs-components.instructions.md) i stosuj jego zasady.
+
+---
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know

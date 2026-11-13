@@ -22,6 +22,7 @@ export default async function BlogPostPage(props: PageProps<`/blog/post/[postId]
         <header className="space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             {post.title}
+
           </h1>
         </header>
         <div className="prose prose-gray max-w-none whitespace-pre-line text-gray-700">

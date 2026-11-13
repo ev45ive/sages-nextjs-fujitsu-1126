@@ -8,7 +8,7 @@ export async function getBlogPosts({
 }: {
   filter?: string;
 } = {}): Promise<BlogPost[]> {
-  await delay(1_000, 1_000);
+  await delay(500, 1_000);
 
   // TODO: DB
   return posts.filter((p) =>
@@ -19,7 +19,7 @@ export async function getBlogPosts({
 export async function getBlogPostById(
   postId = "",
 ): Promise<BlogPost | undefined> {
-  await delay(4000);
+  await delay(1000);
 
   if (parseInt(postId) == 500) {
     throw new Error("Ten post się pospsuł..."); // error.tsx
