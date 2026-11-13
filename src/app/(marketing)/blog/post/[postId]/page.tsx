@@ -15,8 +15,11 @@ export default async function BlogPostPage(
 ) {
   const { postId } = await props.params;
 
-  const post = await getBlogPostById(postId); // loading.jsx
-  const postComments = await getBlogPostComments(postId); // loading.jsx
+  const postP = getBlogPostById(postId); // loading.jsx - 500
+  const postCommentsP = getBlogPostComments(postId); // loading.jsx - 1000
+
+  // const post = await postP; const postComments = await postCommentsP;
+  const [post, postComments] = await Promise.all([postP, postCommentsP]);
 
   return (
     <main className="mx-auto max-w-3xl space-y-10 px-4 py-12 sm:px-6">
