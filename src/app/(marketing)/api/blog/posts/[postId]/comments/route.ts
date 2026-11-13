@@ -1,3 +1,4 @@
+import { getBlogPostComments } from "@/services/BlogAPI";
 import { cookies, headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -10,7 +11,9 @@ export async function GET(
   const { postId } = await ctx.params;
   const filter = new URL(request.url).searchParams.get("q");
 
-  return NextResponse.json({ postId });
+  const comments = await getBlogPostComments(postId);
+
+  return NextResponse.json(comments);
 }
 
 export async function POST(

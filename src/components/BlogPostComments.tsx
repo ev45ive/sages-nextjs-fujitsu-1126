@@ -4,12 +4,15 @@ import { useEffect, useState, type ComponentProps } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { BlogPost } from "@/services/BlogAPI";
+import { fetchGET } from "@/api";
 
 type BlogPostCommentsProps = ComponentProps<"section"> & {
   comments?: BlogPost["comments"];
+  postId?: string;
 };
 
 export function BlogPostComments({
+  postId,
   comments: initialComments = [],
   className,
   ...props
@@ -18,9 +21,13 @@ export function BlogPostComments({
 
   const onResetClick = () => setComments([]);
 
+  // Formula =SUM(A1,B2)
   useEffect(() => {
     console.log("effect");
-  });
+
+    fetchGET<BlogPost["comments"]>(`/api/blog/posts/${postId}/comments`) //
+      .then((e) => setComments(e));
+  }, [postId]);
 
   console.log("render");
 

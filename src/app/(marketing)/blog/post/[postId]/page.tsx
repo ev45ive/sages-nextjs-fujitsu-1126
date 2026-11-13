@@ -76,7 +76,7 @@ export default async function BlogPostPage(
 
       {/* Passing server data to client component? */}
       {/* <BlogPostComments /> */}
-      <BlogPostComments comments={post.comments} />
+      <BlogPostComments postId={postId} comments={[]} />
     </main>
   );
 }
