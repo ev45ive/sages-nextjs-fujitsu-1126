@@ -82,10 +82,10 @@
     "scope": "typescript,typescriptreact",
     "body": [
       "export async function POST(request: NextRequest, ctx: RouteContext<'${1}'>) {",
-      "  const { ${2:id} } = await ctx.params;",
-      "  const ${3:body} = await request.json();",
+      "  ${2:const { ${3:id} \\} = await ctx.params;}",
+      "  const ${4:body} = await request.json();",
       "",
-      "  return NextResponse.json(${3:body}, { status: ${2:201} });",
+      "  return NextResponse.json(${4:body}, { status: ${5|201,202,200|} });",
       "}"
     ]
   },
