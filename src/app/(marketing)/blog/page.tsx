@@ -12,9 +12,7 @@ type QueryParams = {
 };
 
 // http://localhost:3000/blog
-export default async function BlogPage({
-  searchParams,
-}: PageProps<"/blog"> & QueryParams) {
+export default async function BlogPage({searchParams,}: PageProps<"/blog"> & QueryParams) {
   const { filter, page } = await searchParams; //
 
   await delay(2000);

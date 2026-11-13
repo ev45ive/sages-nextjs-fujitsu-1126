@@ -1,0 +1,146 @@
+{
+  "Next.js Page": {
+    "prefix": "nextPage",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "/**",
+      " * ${1:Opis strony}",
+      " * @route ${2:/route}",
+      " */",
+      "export default async function ${3:Page}(props: PageProps<\"${2:/route}\">) {",
+      "  ${4:const { ${5:slug} \\} = await props.params;}",
+      "  ${6:const { ${7:query} \\} = await props.searchParams;}",
+      "",
+      "  // TODO: nextNotFoundCheck",
+      "",
+      "  return (",
+      "    <div>$0</div>",
+      "  );",
+      "}"
+    ]
+  },
+  "Next.js Layout": {
+    "prefix": "nextLayout",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "export default async function ${1:Layout}(props: LayoutProps<\"${2:/route}\">) {",
+      "  ${3:const { ${4:slug} \\} = await props.params;}",
+      "",
+      "  return (",
+      "    <div>",
+      "      $0{props.children}",
+      "    </div>",
+      "  );",
+      "}"
+    ]
+  },
+  "Next.js Suspense Page": {
+    "prefix": "nextSuspense",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "export default function ${1:Page}(props: PageProps<\"${2:/route}\">) {",
+      "  return (",
+      "    <Suspense fallback={${3:null}}>",
+      "      <${4:Content} params={props.params} />",
+      "    </Suspense>",
+      "  );",
+      "}",
+      "",
+      "async function ${4:Content}({ params }: { params: PageProps<\"${2:/route}\">[\"params\"] }) {",
+      "  const { ${5:slug} } = await params;",
+      "",
+      "  return <div>$0</div>;",
+      "}"
+    ]
+  },
+  "Next.js notFound check": {
+    "prefix": "nextNotFoundCheck",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "const ${1:post} = await ${2:getBlogPostById}(${3:postId});",
+      "",
+      "if (!${1:post}) {",
+      "  notFound();",
+      "}",
+      "",
+      "$0"
+    ]
+  },
+  "Next.js Route GET": {
+    "prefix": "nextRouteGet",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "export async function GET(_request: NextRequest, ctx: { params: Promise<{ ${1:id}: string }> }) {",
+      "  const { ${1:id} } = await ctx.params;",
+      "",
+      "  return NextResponse.json({ ${1:id} });",
+      "}"
+    ]
+  },
+  "Next.js Route POST": {
+    "prefix": "nextRoutePost",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "export async function POST(request: NextRequest) {",
+      "  const ${1:body} = await request.json();",
+      "",
+      "  return NextResponse.json(${1:body}, { status: ${2:201} });",
+      "}"
+    ]
+  },
+  "Next.js usePathname component": {
+    "prefix": "nextUsePathnameSuspense",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "export function ${1:NavLink}({ href, children }: { href: string; children: React.ReactNode }) {",
+      "  const pathname = usePathname();",
+      "",
+      "  return (",
+      "    <Link href={href} aria-current={pathname === href ? \"page\" : undefined}>",
+      "      {children}",
+      "    </Link>",
+      "  );",
+      "}"
+    ]
+  },
+  "Next.js proxy": {
+    "prefix": "nextProxy",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "import { NextResponse, type NextRequest } from \"next/server\";",
+      "",
+      "export function proxy(request: NextRequest) {",
+      "  $0",
+      "  return NextResponse.next();",
+      "}",
+      "",
+      "export const config = {",
+      "  matcher: [\"${1:/blog/:path*}\"],",
+      "};"
+    ]
+  },
+  "Next.js generateMetadata": {
+    "prefix": "nextGenerateMetadata",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "export async function generateMetadata(props: PageProps<\"${1:/route}\">): Promise<Metadata> {",
+      "  const { ${2:slug} } = await props.params;",
+      "",
+      "  return {",
+      "    title: \"${3:Tytul}\",",
+      "  };",
+      "}"
+    ]
+  },
+  "Next.js generateStaticParams": {
+    "prefix": "nextGenerateStaticParams",
+    "scope": "typescript,typescriptreact",
+    "body": [
+      "export async function generateStaticParams() {",
+      "  const ${1:items} = await ${2:getItems}();",
+      "",
+      "  return ${1:items}.map((item) => ({ ${3:slug}: item.${4:slug} }));",
+      "}"
+    ]
+  }
+}

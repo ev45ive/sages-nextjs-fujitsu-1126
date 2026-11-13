@@ -7,9 +7,7 @@ import { notFound } from "next/navigation";
 
 // http://localhost:3000/blog/post/123/
 
-export default async function BlogPostPage(
-  props: PageProps<`/blog/post/[postId]`>,
-) {
+export default async function BlogPostPage(props: PageProps<`/blog/post/[postId]`>,) {
   const { postId } = await props.params;
 
   const post = await getBlogPostById(postId);
