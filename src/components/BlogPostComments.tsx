@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import { useState, type ComponentProps } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { BlogPost } from "@/services/BlogAPI";
@@ -10,14 +10,21 @@ type BlogPostCommentsProps = ComponentProps<"section"> & {
 };
 
 export function BlogPostComments({
-  comments = [],
+  comments: initialComments = [],
   className,
   ...props
 }: BlogPostCommentsProps) {
+  const [comments, setComments] = useState(initialComments);
+
+  //   const reset = () => setComments(comments); // no-op - same comments stable ref!
+  const reset = () => setComments([]); //same value -> new ref - renrender!
+
+  //   setComments([...comments]) // Ininite rerender loop
+
   return (
     <section className={className} {...props}>
       <Card>
-        <CardHeader>
+        <CardHeader onClick={() => reset()}>
           <CardTitle>Comments ({comments.length})</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
