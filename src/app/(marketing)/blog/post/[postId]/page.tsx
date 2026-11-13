@@ -14,10 +14,6 @@ import { Suspense } from "react";
 export default async function BlogPostPage(
   props: PageProps<`/blog/post/[postId]`>,
 ) {
-  // const { postId } = await props.params;
-
-  // const postComments = getBlogPostComments(postId);
-
   return (
     <main className="mx-auto max-w-3xl space-y-10 px-4 py-12 sm:px-6">
       <Suspense fallback={<PostLoading />}>
@@ -26,7 +22,7 @@ export default async function BlogPostPage(
 
       <Separator />
 
-      <Suspense fallback={<p>Loading comments sections</p>}>
+      <Suspense fallback={<p className="my-5">Loading comments sections</p>}>
         <BlogPostCommentsServer params={props.params} />
       </Suspense>
     </main>

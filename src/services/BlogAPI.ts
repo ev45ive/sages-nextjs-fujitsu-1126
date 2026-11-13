@@ -8,6 +8,7 @@ export async function getBlogPosts({
 }: {
   filter?: string;
 } = {}): Promise<BlogPost[]> {
+  "use cache";
   await delay(300, 500);
 
   // TODO: DB
@@ -17,7 +18,10 @@ export async function getBlogPosts({
 }
 
 export async function getBlogPostById(postId: string): Promise<BlogPost> {
+  "use cache";
   await delay(1600);
+
+  console.log("getBlogPostById: " + postId);
 
   if (parseInt(postId) == 500) {
     throw new Error("Ten post się pospsuł..."); // error.tsx
@@ -35,6 +39,7 @@ export async function getBlogPostById(postId: string): Promise<BlogPost> {
 export async function getBlogPostComments(
   postId: string,
 ): Promise<BlogPost["comments"]> {
+  "use cache";
   const post = await getBlogPostById(postId);
 
   if (!post) notFound(); // 404
