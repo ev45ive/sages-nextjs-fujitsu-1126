@@ -1,11 +1,11 @@
-import { TopNavigation } from "@/components/TopNavigation";
+import { CartView } from "./CartView";
 
-export default async function name() {
+// Stan koszyka żyje w localStorage (zustand), więc listę renderuje komponent klienta
+export default function CartPage() {
   return (
-    <div>
-      <h1>Page Cart</h1>
+    <div className="grid gap-4">
+      <h1 className="text-2xl font-semibold">Koszyk</h1>
+      <CartView />
     </div>
   );
 }
-
-
