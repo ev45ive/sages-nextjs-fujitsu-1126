@@ -16,9 +16,6 @@ export async function GET(
   const { postId } = await ctx.params;
   const filter = new URL(request.url).searchParams.get("q");
 
-  const post = await getBlogPostById(postId);
-
-  if (!post) notFound(); // 404
 
   const comments = await getBlogPostComments(postId);
 

@@ -4,7 +4,7 @@
 import { BlogPostComments } from "@/components/BlogPostComments";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { getBlogPostById } from "@/services/BlogAPI";
+import { getBlogPostById, getBlogPostComments } from "@/services/BlogAPI";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -14,14 +14,9 @@ export default async function BlogPostPage(
   props: PageProps<`/blog/post/[postId]`>,
 ) {
   const { postId } = await props.params;
-  const post = await getBlogPostById(postId);
 
-  // Cannot pass NON-Serializable props to client (JSON.stringify)
-  // (post?.comments as any)[0].bananan = function () {};
-
-  if (!post) {
-    notFound();
-  }
+  const post = await getBlogPostById(postId); // loading.jsx
+  const postComments = await getBlogPostComments(postId); // loading.jsx
 
   return (
     <main className="mx-auto max-w-3xl space-y-10 px-4 py-12 sm:px-6">
@@ -76,7 +71,7 @@ export default async function BlogPostPage(
 
       {/* Passing server data to client component? */}
       {/* <BlogPostComments /> */}
-      <BlogPostComments postId={postId} comments={[]} />
+      <BlogPostComments postId={postId} comments={postComments} />
     </main>
   );
 }

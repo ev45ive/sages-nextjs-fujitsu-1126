@@ -16,9 +16,7 @@ export async function getBlogPosts({
   );
 }
 
-export async function getBlogPostById(
-  postId: string,
-): Promise<BlogPost | undefined> {
+export async function getBlogPostById(postId: string): Promise<BlogPost> {
   await delay(600);
 
   if (parseInt(postId) == 500) {
@@ -29,7 +27,7 @@ export async function getBlogPostById(
     (p) => p.id == parseInt(postId),
   );
 
-  //   if (!post) notFound(); // never -> not_found.tsx
+  if (!post) notFound(); // never -> not_found.tsx
 
   return post;
 }
@@ -37,9 +35,11 @@ export async function getBlogPostById(
 export async function getBlogPostComments(
   postId: string,
 ): Promise<BlogPost["comments"]> {
-  const post: BlogPost | undefined = posts.find(
-    (p) => p.id == parseInt(postId),
-  );
+  const post = await getBlogPostById(postId);
+
+  if (!post) notFound(); // 404
+
+  await delay(600);
 
   return post?.comments ?? [];
 }
