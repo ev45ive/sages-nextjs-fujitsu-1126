@@ -17,7 +17,7 @@ export async function getBlogPosts({
 }
 
 export async function getBlogPostById(
-  postId = "",
+  postId: string,
 ): Promise<BlogPost | undefined> {
   await delay(600);
 
@@ -32,6 +32,16 @@ export async function getBlogPostById(
   //   if (!post) notFound(); // never -> not_found.tsx
 
   return post;
+}
+
+export async function getBlogPostComments(
+  postId: string,
+): Promise<BlogPost["comments"]> {
+  const post: BlogPost | undefined = posts.find(
+    (p) => p.id == parseInt(postId),
+  );
+
+  return post?.comments ?? [];
 }
 
 export type BlogPost = {

@@ -70,10 +70,10 @@
     "prefix": "nextRouteGet",
     "scope": "typescript,typescriptreact",
     "body": [
-      "export async function GET(_request: NextRequest, ctx: { params: Promise<{ ${1:id}: string }> }) {",
-      "  const { ${1:id} } = await ctx.params;",
+      "export async function GET(request: NextRequest, ctx: RouteContext<'${1}'>) {",
+      "  const { ${2:id} } = await ctx.params;",
       "",
-      "  return NextResponse.json({ ${1:id} });",
+      "  return NextResponse.json({ ${2:id} });",
       "}"
     ]
   },
@@ -81,25 +81,11 @@
     "prefix": "nextRoutePost",
     "scope": "typescript,typescriptreact",
     "body": [
-      "export async function POST(request: NextRequest) {",
-      "  const ${1:body} = await request.json();",
+      "export async function POST(request: NextRequest, ctx: RouteContext<'${1}'>) {",
+      "  const { ${2:id} } = await ctx.params;",
+      "  const ${3:body} = await request.json();",
       "",
-      "  return NextResponse.json(${1:body}, { status: ${2:201} });",
-      "}"
-    ]
-  },
-  "Next.js usePathname component": {
-    "prefix": "nextUsePathnameSuspense",
-    "scope": "typescript,typescriptreact",
-    "body": [
-      "export function ${1:NavLink}({ href, children }: { href: string; children: React.ReactNode }) {",
-      "  const pathname = usePathname();",
-      "",
-      "  return (",
-      "    <Link href={href} aria-current={pathname === href ? \"page\" : undefined}>",
-      "      {children}",
-      "    </Link>",
-      "  );",
+      "  return NextResponse.json(${3:body}, { status: ${2:201} });",
       "}"
     ]
   },
