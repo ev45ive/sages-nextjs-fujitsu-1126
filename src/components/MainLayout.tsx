@@ -1,4 +1,4 @@
-import { TopNavigation } from "@/app/components/TopNavigation";
+import { TopNavigation } from "@/components/TopNavigation";
 import { PropsWithChildren, ReactNode } from "react";
 
 

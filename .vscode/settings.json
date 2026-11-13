@@ -24,4 +24,7 @@
       "severity": "warn",
     },
   ],
+  "chat.tools.terminal.autoApprove": {
+    "npx --yes shadcn@latest": true
+  },
 }
