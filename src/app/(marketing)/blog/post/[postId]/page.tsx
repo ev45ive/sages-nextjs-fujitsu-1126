@@ -16,6 +16,9 @@ export default async function BlogPostPage(
   const { postId } = await props.params;
   const post = await getBlogPostById(postId);
 
+  // Cannot pass NON-Serializable props to client (JSON.stringify)
+  // (post?.comments as any)[0].bananan = function () {};
+
   if (!post) {
     notFound();
   }
@@ -72,6 +75,7 @@ export default async function BlogPostPage(
       <Separator />
 
       {/* Passing server data to client component? */}
+      {/* <BlogPostComments /> */}
       <BlogPostComments comments={post.comments} />
     </main>
   );

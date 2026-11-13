@@ -6,11 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { BlogPost } from "@/services/BlogAPI";
 
 type BlogPostCommentsProps = ComponentProps<"section"> & {
-  comments: BlogPost["comments"];
+  comments?: BlogPost["comments"];
 };
 
 export function BlogPostComments({
-  comments,
+  comments = [],
   className,
   ...props
 }: BlogPostCommentsProps) {
