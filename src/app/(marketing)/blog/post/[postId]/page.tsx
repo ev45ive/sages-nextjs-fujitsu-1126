@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { getBlogPostById, getBlogPostComments } from "@/services/BlogAPI";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 // http://localhost:3000/blog/post/123/
 
@@ -15,11 +16,11 @@ export default async function BlogPostPage(
 ) {
   const { postId } = await props.params;
 
-  const postP = getBlogPostById(postId); // loading.jsx - 500
-  const postCommentsP = getBlogPostComments(postId); // loading.jsx - 1000
+  const post = await getBlogPostById(postId); // loading.jsx - 500
+  const postComments = getBlogPostComments(postId); // loading.jsx - 1000
 
   // const post = await postP; const postComments = await postCommentsP;
-  const [post, postComments] = await Promise.all([postP, postCommentsP]);
+  // const [post, postComments] = await Promise.all([postP, postCommentsP]);
 
   return (
     <main className="mx-auto max-w-3xl space-y-10 px-4 py-12 sm:px-6">
@@ -72,9 +73,9 @@ export default async function BlogPostPage(
 
       <Separator />
 
-      {/* Passing server data to client component? */}
-      {/* <BlogPostComments /> */}
-      <BlogPostComments postId={postId} comments={postComments} />
+      <Suspense fallback={<p>Loading comments sections</p>}>
+        <BlogPostComments postId={postId} comments={postComments} />
+      </Suspense>
     </main>
   );
 }

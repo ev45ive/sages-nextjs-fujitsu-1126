@@ -1,6 +1,6 @@
 "use client";
 
-import { type ComponentProps } from "react";
+import { use, type ComponentProps } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { BlogPost, BlogPostComment } from "@/services/BlogAPI";
@@ -11,25 +11,24 @@ import { cn } from "cn";
 import { fetchPOST } from "@/api";
 
 type BlogPostCommentsProps = ComponentProps<"section"> & {
-  comments?: BlogPost["comments"];
+  comments: Promise<BlogPost["comments"]>;
   postId: string;
 };
 
 export function BlogPostComments({
   postId,
-  comments: initialComments = [],
+  comments: commentsPromise,
   className,
   ...props
 }: BlogPostCommentsProps) {
-  //...
-  //   const query2 = useBlogPostCommentsQuery(123, initialComments)
+  const comments = use(commentsPromise); // Delay loading
 
   const {
-    data: comments = [],
+    data = [],
     isLoading,
     error,
     refetch,
-  } = useBlogPostCommentsQuery(postId, initialComments);
+  } = useBlogPostCommentsQuery(postId, comments);
 
   const createComment = async (data: BlogPostComment) => {
     try {

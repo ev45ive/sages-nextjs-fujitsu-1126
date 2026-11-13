@@ -39,7 +39,7 @@ export async function getBlogPostComments(
 
   if (!post) notFound(); // 404
 
-  await delay(600);
+  await delay(1000);
 
   return post?.comments ?? [];
 }
