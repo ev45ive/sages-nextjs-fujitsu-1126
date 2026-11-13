@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ComponentProps } from "react";
+import { useEffect, useState, type ComponentProps } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { BlogPost } from "@/services/BlogAPI";
@@ -16,15 +16,19 @@ export function BlogPostComments({
 }: BlogPostCommentsProps) {
   const [comments, setComments] = useState(initialComments);
 
-  //   const reset = () => setComments(comments); // no-op - same comments stable ref!
-  const reset = () => setComments([]); //same value -> new ref - renrender!
+  const onResetClick = () => setComments([]);
 
-  //   setComments([...comments]) // Ininite rerender loop
+  useEffect(() => {
+    console.log("effect");
+  });
 
+  console.log("render");
+
+  /* vdiv : {type:'div', props: { className:'' } */
   return (
     <section className={className} {...props}>
       <Card>
-        <CardHeader onClick={() => reset()}>
+        <CardHeader onClick={() => onResetClick()}>
           <CardTitle>Comments ({comments.length})</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
