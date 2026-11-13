@@ -1,13 +1,8 @@
 // Allow blocking route (TODO: Suspense)
 // export const instant = false;
 
+import { BlogPostComments } from "@/components/BlogPostComments";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getBlogPostById } from "@/services/BlogAPI";
 import Image from "next/image";
@@ -16,8 +11,8 @@ import { notFound } from "next/navigation";
 // http://localhost:3000/blog/post/123/
 
 export default async function BlogPostPage(props: PageProps<`/blog/post/[postId]`>,) {
+  
   const { postId } = await props.params;
-
   const post = await getBlogPostById(postId);
 
   if (!post) {
@@ -75,26 +70,7 @@ export default async function BlogPostPage(props: PageProps<`/blog/post/[postId]
 
       <Separator />
 
-      <section>
-        <Card>
-          <CardHeader>
-            <CardTitle>Comments ({post.comments.length})</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {post.comments.length === 0 && (
-              <p className="text-sm text-muted-foreground">No comments yet.</p>
-            )}
-            {post.comments.map((item, index) => (
-              <div key={index} className="rounded-lg bg-muted p-4">
-                <p className="text-sm font-medium text-foreground">
-                  {item.user}
-                </p>
-                <p className="text-sm text-muted-foreground">{item.comment}</p>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </section>
+      <BlogPostComments comments={post.comments} />
     </main>
   );
 }

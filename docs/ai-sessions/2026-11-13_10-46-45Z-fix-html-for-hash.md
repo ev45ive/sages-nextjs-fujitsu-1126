@@ -376,3 +376,229 @@ under the title.
 I used `unoptimized` on the `next/image` components, so the placehold.co URLs work without changing `next.config.ts`. I also removed the unused `delay` import.
 
 I haven't run `npm run build` or opened the page in a browser yet.
+
+---
+
+_**User (2026-11-13 11:01:30Z)**_
+
+Extract comments to BlogPostComments component
+
+---
+
+_**Agent (copilot/claude-haiku-5.5)**_
+
+<tool-use data-tool-type="write" data-tool-name="create_file"><details>
+<summary>Tool use: **create_file**</summary>
+
+Created `BlogPostComments.tsx`
+
+**Input:**
+
+- content:
+
+```
+import type { ComponentProps } from "react";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import type { BlogPost } from "@/services/BlogAPI";
+
+type BlogPostCommentsProps = ComponentProps<"section"> & {
+  comments: BlogPost["comments"];
+};
+
+export function BlogPostComments({
+  comments,
+  className,
+  ...props
+}: BlogPostCommentsProps) {
+  return (
+    <section className={className} {...props}>
+      <Card>
+        <CardHeader>
+          <CardTitle>Comments ({comments.length})</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {comments.length === 0 && (
+            <p className="text-sm text-muted-foreground">No comments yet.</p>
+          )}
+          {comments.map((item, index) => (
+            <div key={index} className="rounded-lg bg-muted p-4">
+              <p className="text-sm font-medium text-foreground">
+                {item.user}
+              </p>
+              <p className="text-sm text-muted-foreground">{item.comment}</p>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+```
+
+- filePath: `c:\Projects\__NEXTJS\sages-nextjs-fujitsu-1126\src\components\BlogPostComments.tsx`
+
+**Result:**
+
+```
+The following files were successfully edited:
+c:\Projects\__NEXTJS\sages-nextjs-fujitsu-1126\src\components\BlogPostComments.tsx
+```
+</details></tool-use>
+
+_**Agent (copilot/claude-haiku-5.5)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file"><details>
+<summary>Tool use: **read_file**</summary>
+
+Read `page.tsx`, lines 1 to 15
+
+**Input:**
+
+- endLine: `15`
+- filePath: `c:\Projects\__NEXTJS\sages-nextjs-fujitsu-1126\src\app\(marketing)\blog\post\[postId]\page.tsx`
+- startLine: `1`
+
+**Result:**
+
+```
+// Allow blocking route (TODO: Suspense)
+// export const instant = false;
+
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { getBlogPostById } from "@/services/BlogAPI";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+```
+</details></tool-use>
+
+_**Agent (copilot/claude-haiku-5.5)**_
+
+<tool-use data-tool-type="write" data-tool-name="textEditGroup"><details>
+<summary>Edit: **BlogPostComments.tsx**</summary>
+
+@@ lines 1-1 @@
+
+```
+import type { ComponentProps } from "react";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import type { BlogPost } from "@/services/BlogAPI";
+
+type BlogPostCommentsProps = ComponentProps<"section"> & {
+  comments: BlogPost["comments"];
+};
+
+export function BlogPostComments({
+  comments,
+  className,
+  ...props
+}: BlogPostCommentsProps) {
+  return (
+    <section className={className} {...props}>
+      <Card>
+        <CardHeader>
+          <CardTitle>Comments ({comments.length})</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {comments.length === 0 && (
+            <p className="text-sm text-muted-foreground">No comments yet.</p>
+          )}
+          {comments.map((item, index) => (
+            <div key={index} className="rounded-lg bg-muted p-4">
+              <p className="text-sm font-medium text-foreground">
+                {item.user}
+              </p>
+              <p className="text-sm text-muted-foreground">{item.comment}</p>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+    </section>
+  );
+}
+
+```
+</details></tool-use>
+
+_**Agent (copilot/claude-haiku-5.5)**_
+
+<tool-use data-tool-type="generic" data-tool-name="get_errors"><details>
+<summary>Tool use: **get_errors**</summary>
+
+Checked `page.tsx`, `BlogPostComments.tsx`, no problems found
+
+**Input:**
+
+- filePaths:
+
+```
+[
+  "c:\\Projects\\__NEXTJS\\sages-nextjs-fujitsu-1126\\src\\app\\(marketing)\\blog\\post\\[postId]\\page.tsx",
+  "c:\\Projects\\__NEXTJS\\sages-nextjs-fujitsu-1126\\src\\components\\BlogPostComments.tsx"
+]
+```
+
+
+**Result:**
+
+```
+<errors path="c:\\Projects\\__NEXTJS\\sages-nextjs-fujitsu-1126\\src\\app\\(marketing)\\blog\\post\\[postId]\\page.tsx">
+No errors found
+</errors>
+<errors path="c:\\Projects\\__NEXTJS\\sages-nextjs-fujitsu-1126\\src\\components\\BlogPostComments.tsx">
+No errors found
+</errors>
+```
+</details></tool-use>
+
+_**Agent (copilot/claude-haiku-5.5)**_
+
+<tool-use data-tool-type="write" data-tool-name="textEditGroup"><details>
+<summary>Edit: **page.tsx**</summary>
+
+@@ lines 78-97 @@
+
+```
+BlogPostComments comments={post.comments} /
+```
+
+@@ lines 4-10 @@
+
+```
+logPostComments } from "@/components/BlogPostComments";
+import { Badge } from "@/components/ui/badge
+```
+</details></tool-use>
+
+_**Agent (copilot/claude-haiku-5.5)**_
+
+I moved the comments markup into a new  component in `src/components/BlogPostComments.tsx`. The page in page.tsx/blog/post/[postId]/page.tsx>) now renders `<BlogPostComments comments={post.comments} />` and no longer imports the  parts. Both files report no errors.
+
+The component takes  and spreads any other `<section>` props, including , so the page can still style it.
+
+_**Agent (copilot/claude-haiku-5.5)**_
+
+<tool-use data-tool-type="task" data-tool-name="manage_todo_list"><details>
+<summary>Tool use: **manage_todo_list**</summary>
+
+Created 4 todos
+</details></tool-use>
