@@ -27,12 +27,16 @@ export function BlogPostComments({
 
     const huston = new AbortController();
 
-    fetchGET<BlogPost["comments"]>(`/api/blog/posts/${postId}/comments`, {
-      signal: huston.signal,
-    }).then((e) => setComments(e));
+    const handler = setTimeout(() => {
+      fetchGET<BlogPost["comments"]>(`/api/blog/posts/${postId}/comments`, {
+        signal: huston.signal,
+      }).then((e) => setComments(e));
+    }, 0 /* ASAP */);
 
-    // Cleanup - on destory or on [deps] change
-    return () => huston.abort("CANCELLED");
+    return () => {
+      clearTimeout(handler);
+      huston.abort("CANCELLED");
+    };
   }, [postId]);
 
   console.log("render");
